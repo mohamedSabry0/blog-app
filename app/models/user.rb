@@ -4,4 +4,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
+
+  def self.most_recent_own_three_posts
+    Post.where(author: self).order(created_at: :desc).limit(3)
+  end
 end
