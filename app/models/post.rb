@@ -3,10 +3,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  validates :title, presence: true, length: { maximum: 100 }
-  validates :text, presence: true, length: { maximum: 1000 }
-  validates :author, presence: true
-
   after_create :update_posts_counter_on_create
   after_destroy :update_posts_counter_on_destroy
 
