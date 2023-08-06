@@ -6,4 +6,25 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   validates :text, presence: true, length: { maximum: 1000 }
   validates :author, presence: true
+
+  after_create :update_posts_counter_on_create
+  after_destroy :update_posts_counter_on_destroy
+
+  def five_most_recent_own_comments
+    Comment.where(post: self).order(created_at: :desc).limit(5)
+  end
+
+  def update_posts_counter_on_create
+    update_posts_counter(1)
+  end
+
+  def update_posts_counter_on_destroy
+    update_posts_counter(-1)
+  end
+
+  def update_posts_counter(value)
+    p author
+    author.posts_counter += value
+    author.save
+  end
 end
