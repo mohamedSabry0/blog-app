@@ -23,7 +23,6 @@ class Post < ApplicationRecord
   end
 
   def update_posts_counter(value)
-    p author
     author.posts_counter += value
     author.save
   end
