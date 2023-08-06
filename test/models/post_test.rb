@@ -6,14 +6,29 @@ class PostTest < ActiveSupport::TestCase
     assert_not post.save
   end
 
-  test 'should not save post without user' do
+  test 'should not save post without author' do
     post = Post.new
     assert_not post.save
   end
 
-  test 'should save post with title' do
+  test 'should not save post with title and without author' do
     post = Post.new
     post.title = 'Hello'
+    assert_not post.save
+  end
+
+  test 'should not save post without title and with author' do
+    post = Post.new
+    user = User.new(name: 'John')
+    post.author = user
+    assert_not post.save
+  end
+
+  test 'should save post with title and author' do
+    post = Post.new
+    post.title = 'Hello'
+    user = User.new(name: 'John')
+    post.author = user
     assert post.save
   end
 
