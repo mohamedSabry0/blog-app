@@ -107,7 +107,7 @@ Use this project in the browsers of desktops and mobile devices
 
 ### Run tests
 
-rspec spec
+rails test
 
 ### Deployment
 
