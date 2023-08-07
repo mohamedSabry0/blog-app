@@ -13,14 +13,14 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'should save comment with user and post' do
     comment = Comment.new
-    comment.user = User.new
+    comment.author = User.new
     comment.post = Post.new
     assert comment.save
   end
 
   test 'should not save comment with user and without post' do
     comment = Comment.new
-    comment.user = User.new
+    comment.author = User.new
     assert_not comment.save
   end
 

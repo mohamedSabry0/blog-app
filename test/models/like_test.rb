@@ -13,14 +13,14 @@ class LikeTest < ActiveSupport::TestCase
 
   test 'should save like with user and post' do
     like = Like.new
-    like.user = User.new
+    like.author = User.new
     like.post = Post.new
     assert like.save
   end
 
   test 'should not save like with user and without post' do
     like = Like.new
-    like.user = User.new
+    like.author = User.new
     assert_not like.save
   end
 
